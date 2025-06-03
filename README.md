@@ -1,15 +1,15 @@
-ASL Digit Recognition Using Hand Keypoints
+Pengenalan Digit ASL Menggunakan Titik Kunci Tangan
 ==========================================
 
-This project is a simple American Sign Language (ASL) digit recognition system using hand keypoints detected with MediaPipe. It allows you to collect your own hand keypoint data, train a machine learning model (neural network) on that data, and then use the trained model for real-time ASL digit prediction via webcam.
+Proyek ini adalah sistem pengenalan digit American Sign Language (ASL) sederhana menggunakan titik kunci (keypoint) tangan yang dideteksi oleh MediaPipe. Proyek ini memungkinkan Anda untuk mengumpulkan data titik kunci tangan Anda sendiri, melatih model machine learning (jaringan saraf tiruan) pada data tersebut, dan kemudian menggunakan model tersebut untuk memprediksi digit ASL secara real-time melalui webcam.
 
-REQUIREMENTS
+PERSYARATAN
 ------------
-Make sure you have Python 3 installed. Then, install the required libraries using pip:
+Pastikan Anda sudah menginstal Python 3. Lalu, instal pustaka yang dibutuhkan menggunakan pip:
 
     pip install opencv-python mediapipe numpy pandas scikit-learn tensorflow matplotlib tqdm
 
-PROJECT STRUCTURE
+STRUKTUR PROYEK
 -----------------
 .
 ├── my_collected_keypoints/
@@ -18,49 +18,49 @@ PROJECT STRUCTURE
 ├── train_model.py
 └── predict_realtime.py
 
-- my_collected_keypoints/: Stores your collected hand keypoint data.
-- asl_digit_keypoint_model_output_custom_data/: Stores the trained model and its label mapping.
-- collect_data.py: Script to collect hand keypoint data via webcam.
-- train_model.py: Script to train a classification model using the collected data.
-- predict_realtime.py: Script to perform real-time ASL digit prediction.
+- my_collected_keypoints/: Menyimpan data titik kunci tangan yang telah Anda kumpulkan.
+- asl_digit_keypoint_model_output_custom_data/: Menyimpan model hasil pelatihan dan pemetaan label-nya.
+- collect_data.py: Script untuk mengumpulkan data titik kunci tangan melalui webcam.
+- train_model.py: Script untuk melatih model klasifikasi menggunakan data yang sudah dikumpulkan.
+- predict_realtime.py: Script untuk melakukan prediksi digit ASL secara real-time.
 
-USAGE GUIDE
+PANDUAN PENGGUNAAN
 -----------
 
-Step 1: Collect Hand Keypoint Data
+Langkah 1: Kumpulkan Data Titik Kunci Tangan
 ----------------------------------
-First, collect hand keypoint data for each digit (0–9).
+Pertama, kumpulkan data titik kunci tangan untuk masing-masing digit (0–9).
 
-Run the data collection script:
+Jalankan script pengumpulan data:
 
     python collect_data.py
 
-- A webcam window will open. Clearly position your hand in front of the camera.
-- To record a keypoint for a digit, make the corresponding hand gesture and press the digit key (0–9) on your keyboard.
-- Ensure your hand is properly detected (a hand skeleton will appear on the screen).
-- Collect at least 20–30 samples per digit for best results. More variation (slight position, lighting changes) improves model accuracy.
-- You’ll see confirmation in the console after each recording.
-- To delete all collected data (use with caution!), press 'c' and confirm with 'y'.
-- Press 'q' to exit. The collected data will be saved as .json files in the my_collected_keypoints/ folder.
+- Jendela webcam akan muncul. Posisikan tangan Anda dengan jelas di depan kamera.
+- Untuk merekam titik kunci suatu digit, buat gerakan tangan yang sesuai dan tekan tombol angka (0–9) di keyboard.
+- Pastikan tangan Anda terdeteksi dengan baik (akan muncul kerangka tangan di layar).
+- Usahakan mengumpulkan setidaknya 20–30 sampel per digit untuk hasil terbaik. Semakin banyak variasi (posisi, pencahayaan), semakin baik modelnya.
+- Setelah setiap rekaman, akan muncul konfirmasi di konsol.
+- Untuk menghapus seluruh data yang sudah terkumpul (hati-hati!), tekan 'c' lalu konfirmasi dengan 'y'.
+- Tekan 'q' untuk keluar. Data akan disimpan dalam file .json di folder my_collected_keypoints/.
 
-Step 2: Train the Classification Model
+Langkah 2: Latih Model Klasifikasi
 --------------------------------------
-Once enough data is collected, train the model:
+Setelah mengumpulkan cukup data, latih model dengan menjalankan:
 
     python train_model.py
 
-- This script loads data from my_collected_keypoints/, preprocesses it, and trains a neural network.
-- You’ll see accuracy and loss progress during training. After training, test accuracy will be displayed.
-- The trained model (asl_digit_keypoint_model_custom_data.h5) and label mapping (asl_digit_keypoint_label_mapping_custom_data.json) will be saved in asl_digit_keypoint_model_output_custom_data/.
-- Training/validation accuracy and loss graphs will also be shown—close them to continue.
+- Script ini akan memuat data dari my_collected_keypoints/, melakukan pra-pemrosesan, dan melatih jaringan saraf tiruan.
+- Selama pelatihan, Anda dapat melihat perkembangan akurasi dan loss. Setelah selesai, akurasi pada data pengujian akan ditampilkan.
+- Model terlatih (asl_digit_keypoint_model_custom_data.h5) dan file pemetaan label (asl_digit_keypoint_label_mapping_custom_data.json) akan disimpan di asl_digit_keypoint_model_output_custom_data/.
+- Grafik akurasi dan loss juga akan ditampilkan—tutup jendela grafik untuk melanjutkan.
 
-Step 3: Perform Real-time Prediction
+Langkah 3: Prediksi Secara Real-Time
 ------------------------------------
-Now use the trained model for real-time ASL digit prediction:
+Gunakan model terlatih untuk melakukan prediksi digit ASL secara langsung:
 
     python predict_realtime.py
 
-- A webcam window will open. Show the ASL digit gesture with your hand.
-- The model will detect your hand keypoints and attempt to predict the digit in real time, displaying the result on screen.
-- Prediction uses historical smoothing for more stable output.
-- Press 'q' to exit prediction mode.
+- Jendela webcam akan terbuka. Tunjukkan gestur digit ASL menggunakan tangan Anda.
+- Model akan mendeteksi titik kunci tangan Anda dan mencoba memprediksi digit secara real-time serta menampilkannya di layar.
+- Prediksi menggunakan metode pelunakan historis (historical smoothing) untuk hasil yang lebih stabil.
+- Tekan 'q' untuk keluar dari mode prediksi.
