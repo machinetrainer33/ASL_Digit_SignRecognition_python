@@ -1,4 +1,4 @@
-Pengenalan Digit ASL Menggunakan Titik Kunci Tangan
+Pengenalan Digit ASL Menggunakan Keypoint Tangan
 ==========================================
 
 Proyek ini adalah sistem pengenalan digit American Sign Language (ASL) sederhana menggunakan titik kunci (keypoint) tangan yang dideteksi oleh MediaPipe. Proyek ini memungkinkan Anda untuk mengumpulkan data titik kunci tangan Anda sendiri, melatih model machine learning (jaringan saraf tiruan) pada data tersebut, dan kemudian menggunakan model tersebut untuk memprediksi digit ASL secara real-time melalui webcam.
